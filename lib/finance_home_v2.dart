@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const ShorebirdFinanceV2App());
-}
-
-class ShorebirdFinanceV2App extends StatelessWidget {
-  const ShorebirdFinanceV2App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
-      home: const FinanceHomeV2(),
-    );
-  }
-}
-
 class FinanceHomeV2 extends StatefulWidget {
   const FinanceHomeV2({super.key});
 
@@ -62,32 +45,40 @@ class _FinanceHomeV2State extends State<FinanceHomeV2> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage('https://images.unsplash.com/photo-1504384308090-c894fdcc538d'),
+            image: NetworkImage(
+              'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
+            ),
             fit: BoxFit.cover,
           ),
         ),
         child: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.black.withOpacity(0.25),
+            color: Colors.black.withValues(alpha: 0.25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextField(
                   controller: _revenueController,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   decoration: const InputDecoration(labelText: 'Revenue'),
                 ),
                 const SizedBox(height: 12),
                 TextField(
                   controller: _expenseController,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   decoration: const InputDecoration(labelText: 'Expense'),
                 ),
                 const SizedBox(height: 12),
                 TextField(
                   controller: _depreciationController,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   decoration: const InputDecoration(labelText: 'Depreciation'),
                 ),
                 const SizedBox(height: 20),
@@ -98,7 +89,11 @@ class _FinanceHomeV2State extends State<FinanceHomeV2> {
                 const SizedBox(height: 12),
                 Text(
                   'Profit: ${_profit.toStringAsFixed(2)}',
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
                 const Spacer(),
                 const Text(
@@ -114,5 +109,3 @@ class _FinanceHomeV2State extends State<FinanceHomeV2> {
     );
   }
 }
-
-

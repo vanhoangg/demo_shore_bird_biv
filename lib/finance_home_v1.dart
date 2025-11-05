@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const ShorebirdFinanceV1App());
-}
-
-class ShorebirdFinanceV1App extends StatelessWidget {
-  const ShorebirdFinanceV1App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
-      home: const FinanceHomeV1(),
-    );
-  }
-}
-
 class FinanceHomeV1 extends StatefulWidget {
   const FinanceHomeV1({super.key});
 
@@ -52,9 +35,7 @@ class _FinanceHomeV1State extends State<FinanceHomeV1> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlue.shade50,
-      appBar: AppBar(
-        title: const Text('Shorebird Finance Demo'),
-      ),
+      appBar: AppBar(title: const Text('Shorebird Finance Demo')),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -63,13 +44,17 @@ class _FinanceHomeV1State extends State<FinanceHomeV1> {
             children: [
               TextField(
                 controller: _revenueController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 decoration: const InputDecoration(labelText: 'Revenue'),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: _expenseController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 decoration: const InputDecoration(labelText: 'Expense'),
               ),
               const SizedBox(height: 20),
@@ -80,10 +65,7 @@ class _FinanceHomeV1State extends State<FinanceHomeV1> {
               const SizedBox(height: 12),
               Text('Profit: ${_profit.toStringAsFixed(2)}'),
               const Spacer(),
-              const Text(
-                'App version: 1.0.0',
-                textAlign: TextAlign.center,
-              ),
+              const Text('App version: 1.0.0', textAlign: TextAlign.center),
             ],
           ),
         ),
@@ -91,5 +73,3 @@ class _FinanceHomeV1State extends State<FinanceHomeV1> {
     );
   }
 }
-
-
