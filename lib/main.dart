@@ -1,4 +1,5 @@
 import 'package:demo_shore_bird/finance_home_v1.dart';
+import 'package:demo_shore_bird/finance_home_v2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
