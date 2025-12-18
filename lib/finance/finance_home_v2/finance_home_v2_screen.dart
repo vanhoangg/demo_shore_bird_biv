@@ -17,6 +17,7 @@ import 'components/input_section_v2.dart';
 
 class FinanceHomeV2Screen extends StatefulWidget {
   const FinanceHomeV2Screen({
+    required this.onCycleSeason,
     super.key,
     this.season = FinanceSeason.rain,
     this.localeProvider,
@@ -24,6 +25,7 @@ class FinanceHomeV2Screen extends StatefulWidget {
 
   final FinanceSeason season;
   final LocaleProvider? localeProvider;
+  final VoidCallback onCycleSeason;
 
   @override
   State<FinanceHomeV2Screen> createState() => _FinanceHomeV2ScreenState();
@@ -34,7 +36,6 @@ class _FinanceHomeV2ScreenState extends State<FinanceHomeV2Screen>
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late FinanceThemeData _theme;
-  late FinanceSeason _currentSeason;
 
   // GlobalKeys for tooltips
   final GlobalKey _revenueKey = GlobalKey();
@@ -46,8 +47,7 @@ class _FinanceHomeV2ScreenState extends State<FinanceHomeV2Screen>
   @override
   void initState() {
     super.initState();
-    _currentSeason = widget.season;
-    _theme = FinanceThemeManager.resolve(_currentSeason);
+    _theme = FinanceThemeManager.resolve(widget.season);
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
@@ -93,23 +93,12 @@ class _FinanceHomeV2ScreenState extends State<FinanceHomeV2Screen>
     await _showTooltipFlow();
   }
 
-  void _cycleTheme() {
-    const List<FinanceSeason> seasons = FinanceSeason.values;
-    final int nextIndex =
-        (seasons.indexOf(_currentSeason) + 1) % seasons.length;
-    setState(() {
-      _currentSeason = seasons[nextIndex];
-      _theme = FinanceThemeManager.resolve(_currentSeason);
-    });
-  }
-
   @override
   void didUpdateWidget(covariant FinanceHomeV2Screen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.season != widget.season) {
       setState(() {
-        _currentSeason = widget.season;
-        _theme = FinanceThemeManager.resolve(_currentSeason);
+        _theme = FinanceThemeManager.resolve(widget.season);
       });
     }
   }
@@ -199,7 +188,7 @@ class _FinanceHomeV2ScreenState extends State<FinanceHomeV2Screen>
                                   theme: _theme,
                                   title: _theme.headerTitle,
                                   subtitle: _theme.headerSubtitle,
-                                  onSwitchTheme: _cycleTheme,
+                                  onSwitchTheme: widget.onCycleSeason,
                                 ),
                               ),
                               if (widget.localeProvider != null)

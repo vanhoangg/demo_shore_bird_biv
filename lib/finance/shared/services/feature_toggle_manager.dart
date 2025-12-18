@@ -47,17 +47,7 @@ class FeatureToggleManager {
     }
   }
 
-  /// Check if Finance V2 should be used
-  /// Priority: User override (SharedPreferences) > JSON config > default
-  static Future<bool> shouldUseFinanceV2() async {
-    await initialize();
-    // Check if user has explicitly set a preference
-    if (_prefs!.containsKey(_useFinanceV2Key)) {
-      return _prefs!.getBool(_useFinanceV2Key)!;
-    }
-    // Otherwise use value from JSON config
-    return _defaultUseFinanceV2;
-  }
+  static Future<bool> shouldUseFinanceV2() async => false;
 
   /// Enable Finance V2
   static Future<void> enableFinanceV2() async {
