@@ -47,7 +47,7 @@ class FeatureToggleManager {
     }
   }
 
-  static Future<bool> shouldUseFinanceV2() async => false;
+  static Future<bool> shouldUseFinanceV2() async => true;
 
   /// Enable Finance V2
   static Future<void> enableFinanceV2() async {
